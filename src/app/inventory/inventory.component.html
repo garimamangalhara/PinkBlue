@@ -1,3 +1,79 @@
-<p>
-  inventory works!
-</p>
+<div class="form-body">
+  <div (click)="show='add'">
+    Add Inventory
+  </div>
+  <form [hidden]="show!='add'">
+    <div class="form-group">
+      <label>Product Id</label>
+      <input type="text" class="form-control" name="userId" [(ngModel)]="inventory.productId" placeholder="Enter userId">
+    </div>
+    <div class="form-group">
+      <label>Product Name</label>
+      <input type="text" class="form-control" name="userId" [(ngModel)]="inventory.productName" placeholder="Enter userId">
+    </div>
+    <div class="form-group">
+      <label>Vendor</label>
+      <input type="text" class="form-control" name="userId" [(ngModel)]="inventory.vendor" placeholder="Enter userId">
+    </div>
+    <div class="form-group">
+      <label>MRP</label>
+      <input type="text" class="form-control" name="userId" [(ngModel)]="inventory.mrp" placeholder="Enter userId">
+    </div>
+    <div class="form-group">
+      <label>Batch Number</label>
+      <input type="text" class="form-control" name="userId" [(ngModel)]="inventory.batchNum" placeholder="Enter userId">
+    </div>
+    <div class="form-group">
+      <label>Batch Date</label>
+      <input type="text" class="form-control" name="userId" [(ngModel)]="inventory.batchDate" placeholder="Enter userId">
+    </div>
+    <div class="form-group">
+      <label>Quantity</label>
+      <input type="text" class="form-control" name="userId" [(ngModel)]="inventory.qty" placeholder="Enter userId">
+    </div>
+    <button type="submit" class="btn-create" (click)="addInventory()">Add Inventory</button>
+  </form>
+  <div (click)="show='invs';getAllInventories()">
+    Show All Inventories
+  </div>
+  <div [hidden]="show!='invs'">
+    <div *ngFor="let inv of inventoryList">
+      <div>
+        <label>ProductId</label>
+        <span>{{inv.productId}}</span>
+      </div>
+      <button (click)="openUpdateForm(inv.productId)">Update</button>
+      <form [hidden]="updateFormFlag!=inv.productId">
+        <div class="form-group">
+          <label>Product Id</label>
+          <input type="text" class="form-control" name="userId" [(ngModel)]="updateInventory.productId" placeholder="Enter userId">
+        </div>
+        <div class="form-group">
+          <label>Product Name</label>
+          <input type="text" class="form-control" name="userId" [(ngModel)]="updateInventory.productName" placeholder="Enter userId">
+        </div>
+        <div class="form-group">
+          <label>Vendor</label>
+          <input type="text" class="form-control" name="userId" [(ngModel)]="updateInventory.vendor" placeholder="Enter userId">
+        </div>
+        <div class="form-group">
+          <label>MRP</label>
+          <input type="text" class="form-control" name="userId" [(ngModel)]="updateInventory.mrp" placeholder="Enter userId">
+        </div>
+        <div class="form-group">
+          <label>Batch Number</label>
+          <input type="text" class="form-control" name="userId" [(ngModel)]="updateInventory.batchNum" placeholder="Enter userId">
+        </div>
+        <div class="form-group">
+          <label>Batch Date</label>
+          <input type="text" class="form-control" name="userId" [(ngModel)]="updateInventory.batchDate" placeholder="Enter userId">
+        </div>
+        <div class="form-group">
+          <label>Quantity</label>
+          <input type="text" class="form-control" name="userId" [(ngModel)]="updateInventory.qty" placeholder="Enter userId">
+        </div>
+        <button type="submit" class="btn-create" (click)="addInventory()">Add Inventory</button>
+      </form>
+    </div>
+  </div>
+</div>
