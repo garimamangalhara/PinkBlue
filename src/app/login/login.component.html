@@ -1,13 +1,30 @@
 <div class="form-body">
-  <form>
+  <form [hidden]="!loginFlag">
     <div class="form-group">
       <label>User Name</label>
-      <input type="text" class="form-control" name="userId" [(ngModel)]="userName" placeholder="Enter userId">
+      <input type="text" class="form-control" name="userId" [(ngModel)]="userName" placeholder="Enter User Name">
     </div>
     <div class="form-group">
       <label>Password</label>
-      <input type="password" class="form-control" name="title" [(ngModel)]="password" placeholder="Enter title">
+      <input type="password" class="form-control" name="title" [(ngModel)]="password" placeholder="Enter Password">
     </div>
     <button type="submit" class="btn-create" (click)="login()">Login</button>
+    <div [hidden]="!loginFlag">Not have any account?
+      <button (click)="loginFlag=false">Sign Up</button>
+    </div>
+  </form>
+  <form [hidden]="loginFlag">
+    <div class="form-group">
+      <label>User Name</label>
+      <input type="text" class="form-control" name="signUpUserName" [(ngModel)]="signUpUserName" placeholder="Enter User Name">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" class="form-control" name="signUpPassword" [(ngModel)]="signUpPassword" placeholder="Enter password">
+    </div>
+    <button type="submit" class="btn-create" (click)="signUp()">Sign Up</button>
+    <div [hidden]="loginFlag">Already have an account?
+      <button (click)="loginFlag=true">Login</button>
+    </div>
   </form>
 </div>

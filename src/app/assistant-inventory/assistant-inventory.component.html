@@ -1,11 +1,11 @@
 <div class="form-body">
-  <button class="btn-primary" (click)="show='add';updateFormFlag = null">
+  <button class="btn-primary" (click)="show='add'">
     Add Inventory
   </button>
   <form [hidden]="show!='add'">
     <div class="form-group">
       <label>Product Id</label>
-      <input type="text" class="form-control" name="productId" [(ngModel)]="inventory.productId" placeholder="Enter Product ID">
+      <input type="text" class="form-control" name="productId" [(ngModel)]="inventory.productId" placeholder="Enter Product Id">
     </div>
     <div class="form-group">
       <label>Product Name</label>
@@ -25,7 +25,7 @@
     </div>
     <div class="form-group">
       <label>Batch Date</label>
-      <input type="text" class="form-control" name="batchDate" [(ngModel)]="inventory.batchDate" placeholder="Enter Batch Date">
+      <input type="text" class="form-control" name="userId" [(ngModel)]="inventory.batchDate" placeholder="Enter BatchDate">
     </div>
     <div class="form-group">
       <label>Quantity</label>
@@ -40,8 +40,8 @@
     <div *ngFor="let inv of inventoryList">
       <label>ProductId</label>
       <span>{{inv.productId}}</span>
-      <button class="appRej-btn" (click)="openUpdateForm(inv.productId)">Update</button>
-      <button class="appRej-btn" (click)="deleteInventoryFunction(inv._id)">Delete</button>
+      <button (click)="openUpdateForm(inv.productId)">Update</button>
+      <button (click)="deleteInventoryFunction(inv.productId)">Delete</button>
       <form [hidden]="updateFormFlag!=inv.productId">
         <div class="form-group">
           <label>Product Id</label>
@@ -71,20 +71,8 @@
           <label>Quantity</label>
           <input type="text" class="form-control" name="qty" [(ngModel)]="updateInventory.qty" placeholder="Enter userId">
         </div>
-        <button type="submit" class="btn-create" (click)="updateInventoryFunction(inv.productId)">Update Inventory</button>
+        <button type="submit" class="btn-create" (click)="updateInventoryFunction(inv.productId)">Add Inventory</button>
       </form>
-    </div>
-  </div>
-  <button class="btn-primary" (click)="viewTobeApprovedList()">
-    Approve or Reject
-  </button>
-  <div [hidden]="!viewApprovedFlag">
-    <div *ngFor="let row of approveOrRejectList">
-      <label>ProductId</label>
-      <span>{{row.productId}}</span>
-      <button class="appRej-btn" (click)="approve(row)">Approve to {{row.status}}</button>
-      <button class="appRej-btn" (click)="reject(row)">Reject</button>
-      <br>
     </div>
   </div>
 </div>

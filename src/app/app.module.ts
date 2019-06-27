@@ -7,11 +7,13 @@ import { AppRoutingModule } from './/app-routing.module';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { InventoryComponent } from './inventory/inventory.component';
+import { AssistantInventoryComponent } from './assistant-inventory/assistant-inventory.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    InventoryComponent
+    InventoryComponent,
+    AssistantInventoryComponent
   ],
   imports: [
     BrowserModule,

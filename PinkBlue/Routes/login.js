@@ -2,14 +2,7 @@ const express = require('express')
 const router = express.Router();
 const User = require('../Models/user')
 
-router.get('/', (req, res) => {
-    res.send('Hello World!')
-})
-router.get('/:productId', async (req, res) => {
-    let inv = await Inventory.Inventory.find({ productId: req.params.productId })
-    console.log(req.params.productId)
-    res.send(inv)
-})
+
 router.post('/getUser', async (req, res) => {
     console.log(req.body)
 
@@ -25,12 +18,21 @@ router.post('/getUser', async (req, res) => {
 })
 router.post('/createUser', async (req, res) => {
     console.log(req.body)
+    let users = await User.User.find()
     let user = new User.User({
         name: req.body.name,
         userName: req.body.userName,
         password: req.body.password,
         isManager: false
     })
+    //will give access as manager if you are the first person to signup
+    if (users.length) {
+        user.isManager = false
+    }
+    else {
+        user.isManager = true
+    }
+
     try {
         console.log(user)
         let result = await user.save()

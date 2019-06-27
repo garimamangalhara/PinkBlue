@@ -1,0 +1,35 @@
+form{
+    width:50%;
+    transform: translate(50%,50%);
+    border:1px solid #599399f0;
+    border-radius:10px;
+    padding:20px;
+    background-color: #599399f0;
+}
+label{
+    /* font-weight:bold; */
+    color:white;
+}
+.form-body{
+    background-color: #286e75f0;
+}
+
+input{
+    background-color: #6ea4a9f0;
+    border:0px;
+}
+input:focus{
+    background-color: #6ea4a9f0;
+    border-color: #286e75f0;
+}
+input::placeholder{
+    color:white;
+}
+
+.btn-create{
+    color: #fff;
+    background-color: #2d6c72;
+    border:1px #2d6c72;
+    border-radius: 2px; 
+    padding:6px;
+}

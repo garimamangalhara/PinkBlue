@@ -10,17 +10,14 @@ import { Router } from '../../../node_modules/@angular/router';
 export class LoginComponent implements OnInit {
   public userName: String;
   public password: String;
-  constructor(private loginService: LoginService,private router:Router) { }
+  public signUpUserName: String;
+  public signUpPassword: String;
+  public loginFlag: boolean = true;
+  constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
-    this.getUserDetails();
   }
-  getUserDetails() {
-    let url = "http://localhost:3000/api/login"
-    this.loginService.getUserDetails(url).subscribe(response => {
-      console.log(response)
-    })
-  }
+
   login() {
     let template = {
       "userName": this.userName,
@@ -29,9 +26,26 @@ export class LoginComponent implements OnInit {
     let url = "http://localhost:3000/api/login/getUser"
     this.loginService.getLoginDetails(url, template).subscribe(response => {
       console.log("Login response:", response)
-      if(response[0].isManager){
-        this.router.navigate(['inventory','admin'])
+      if (response) {
+        if (response[0].isManager) {
+          this.router.navigate(['inventory', 'admin'])
+        }
+        else if (!response[0].isManager) {
+          this.router.navigate(['assistantInventory', 'assistant'])
+        }
       }
+      else {
+        window.alert("Wrong Id password")
+      }
+    })
+  }
+  signUp() {
+    let template = {
+      "userName": this.signUpUserName,
+      "password": this.signUpPassword
+    }
+    this.loginService.signUp(template).subscribe(response => {
+      console.log("Login response:", response)
     })
   }
 }

@@ -34,7 +34,7 @@ router.post('/createInventory', async (req, res) => {
 
 })
 router.post('/updateInventory', async (req, res) => {
-    const inv = await Inventory.Inventory.findByIdAndUpdate(req.body.productId, {
+    const inv = await Inventory.Inventory.findByIdAndUpdate(req.body._id, {
         $set: {
             productName: req.body.productName,
             vendor: req.body.vendor,
@@ -47,6 +47,7 @@ router.post('/updateInventory', async (req, res) => {
     }, {
             new: true
         })
+        console.log(inv)
     try {
 
         res.send(inv)
@@ -54,5 +55,16 @@ router.post('/updateInventory', async (req, res) => {
     catch (err) {
         res.send("Some error while updating!")
     }
+})
+router.post('/deleteInventory', async (req, res) => {
+    console.log(req.body._id)
+    const inv = await Inventory.Inventory.findByIdAndDelete(req.body._id, function (err) {
+        if (err)
+            res.send(err)
+        else
+            res.send("Inventory deleted")
+            
+    })
+    
 })
 module.exports = router;
